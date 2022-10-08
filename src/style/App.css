@@ -143,13 +143,13 @@ input:focus{
 
 input::placeholder{font-weight: 300;}
 .errorMsg,.card-num-error,.expiry-error,.error-cvc{
-    color: hsl(0, 0%, 100%);
+    color: red;
     font-size: 12px;
     font-weight: 500;
     padding-top: 2px;
     padding-left: 2px;
 }
-#expiry-error,#error-cvc{
+.expiry-error,.error-cvc{
     letter-spacing: 1px;
 
 }
@@ -192,8 +192,10 @@ button{
 button:hover{
     background-color:hsl(278, 68%, 11%, 0.8) ;
 }
-.hidden{
-    display: none;
+.thank-you {
+   margin-right: 150px;
+   margin-top: 280px;
+
 }
 
 /*.errorMsg, .card-num-error, .expiry-error, .error-cvc{

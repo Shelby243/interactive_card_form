@@ -13,7 +13,7 @@ export default function CardDisplay(props) {
         <p className="card-number-display">{props.num}</p>
         <p className="cardholder-display">{props.name} </p>
         <p className="expiry-month-display">{props.expMm} </p>
-        <p className="expiry-divider-display"> </p>
+        <p className="expiry-divider-display">/ </p>
         <p className="expiry-year-display">{props.expYy} </p>
       </div>
       <div className='card-back'>

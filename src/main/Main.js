@@ -32,6 +32,7 @@ class Main1 extends React.Component{
         this.validateCvc=this.validateCvc.bind(this)
         this.validateField=this.validateField.bind(this)
         this.handleSubmit=this.handleSubmit.bind(this)
+        this.handlereset=this.handlereset.bind(this)
     }
     
     handleChange(e){
@@ -168,8 +169,19 @@ class Main1 extends React.Component{
                 console.log(data)
         }
         
+        console.log(this.state.isFormSubmitted)
         return this.state.isFormSubmitted
         
+    }
+    handlereset(e){
+        e.preventDefault()
+        this.setState({isFormSubmitted:false})
+        this.setState({cardholderName:''})
+        this.setState({cardNumber:''})
+        this.setState({expiryMonth:''})
+        this.setState({expiryYear:''})
+        this.setState({cvcDisplay:''})
+
     }
     validateField(name){
         let isValid=false
@@ -267,43 +279,63 @@ class Main1 extends React.Component{
             cvcError,
 
         }=this.state
-
-    return(
-    <div className='container'>
+        if(this.state.isFormSubmitted===true){
+            return(
+                <div className='container'>
        
-      <CardDisplay
-        name={cardholderName}
-        num={cardNumber}
-        expMm={expiryMonth}
-        expYy={expiryYear}
-        cvc={cvcDisplay}
-      />
+                    <CardDisplay
+                    name={cardholderName}
+                    num={cardNumber}
+                    expMm={expiryMonth}
+                    expYy={expiryYear}
+                    cvc={cvcDisplay}
+                />
+                <ThankYou
+                    fname={cardholderName}
+                    handlereset={this.handlereset}
+                />
+                </div>
+            )
+        }else{
+            return ( 
+           <div className='container'>
+       
+            <CardDisplay
+                name={cardholderName}
+                num={cardNumber}
+                expMm={expiryMonth}
+                expYy={expiryYear}
+                cvc={cvcDisplay}
+            />
      
       
         
       
-       <CardDetails
-      name={cardholderName}
-      num={cardNumber}
-      expMm={expiryMonth}
-      expYy={expiryYear}
-      cvc={cvcDisplay}
-      handleInput={this.handleInput.bind(this)}
-      handleInput1={this.handleInput1.bind(this)}
-      handleInput2={this.handleInput2.bind(this)}
-      handleInput3={this.handleInput3.bind(this)}
-      handleInput4={this.handleInput4.bind(this)}
-      handleSubmit={this.handleSubmit}
-      handleBlur={this.handleBlur}
-      handleChange={this.handleChange}
-      error1={cardholdernameError}
-      error2={cardnumberError}
-      error3={expiryError}
-      error4={cvcError}
-        
-      />
+                <CardDetails
+                name={cardholderName}
+                num={cardNumber}
+                expMm={expiryMonth}
+                expYy={expiryYear}
+                cvc={cvcDisplay}
+                handleInput={this.handleInput.bind(this)}
+                handleInput1={this.handleInput1.bind(this)}
+                handleInput2={this.handleInput2.bind(this)}
+                handleInput3={this.handleInput3.bind(this)}
+                handleInput4={this.handleInput4.bind(this)}
+                handleSubmit={this.handleSubmit}
+                handleBlur={this.handleBlur}
+                handleChange={this.handleChange}
+                error1={cardholdernameError}
+                error2={cardnumberError}
+                error3={expiryError}
+                error4={cvcError}
+                    
+                />
     </div>
-        )
+    )
+        }
+
+   
     }
 }
 
